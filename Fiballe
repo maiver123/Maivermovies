@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Upload - Kevin's Movies</title>
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    .preview img {
+      width: 200px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Upload a New Movie Poster</h1>
+  <p>Kevin only – don't share this link.</p>
+
+  <input type="file" id="posterInput" accept="image/*"><br>
+  <button onclick="previewPoster()">Preview</button>
+
+  <div class="preview" id="preview"></div>
+
+  <script>
+    function previewPoster() {
+      const file = document.getElementById('posterInput').files[0];
+      if (!file) return alert("Choose an image first!");
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('preview').innerHTML = 
+          '<img src="' + e.target.result + '" alt="Preview">';
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+</body>
+</html>
